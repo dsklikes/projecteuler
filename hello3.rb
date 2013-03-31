@@ -1,5 +1,7 @@
 
 
+=begin
+
 def primecheck(primenum)
 	
 	primedown = primenum-1
@@ -14,14 +16,40 @@ def primecheck(primenum)
 end
 
 def finddiv(number)
-	divis = number
+	divis = number/2
+	if divis%2 == 0
+		divis-= 1
+	end
+
 	while divis >= 1
 		if number%divis==0
-			primecheck(number)
+			if primecheck(divis)==true
+				return divis
+			elsif
+				divis-= 2
+			end
+					
 		elsif 
 			divis-= 2
 		end
 	end
 end
+=end
 
-puts finddiv(600851475143)
+
+
+def divisible(primenum)
+	i = 2
+	while i < 10000
+		if i == primenum
+			return primenum
+		elsif primenum%i==0
+			primenum= primenum / i
+		else
+			i+= 1
+		end
+	end
+
+end
+
+puts divisible(600851475143)
