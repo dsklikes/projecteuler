@@ -6,10 +6,7 @@ int_array = number.scan(/./).map(&:to_i)
 counter = 0
 while counter < number.length-4
 	product = int_array[counter,5].inject(:*)
-
-	if maxproduct < product
-		maxproduct = product
-	end
+	maxproduct =  product > maxproduct ? product : maxproduct
 	counter+= 1
 end
 
