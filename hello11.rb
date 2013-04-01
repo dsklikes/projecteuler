@@ -3,8 +3,46 @@ numbers = "08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08 49 49 99 
 array_int = numbers.split(" ").collect { |x| x.to_i }
 
 splicedarr = array_int.each_slice(20).to_a
+maxproduct = 0
 
+(0..19).each do |x|
+	(0..19).each do |y|	
+		#horizontal		
+		if y+3 <= 19
+			product = 1
+			(0..3).each do |c|
+				product*= splicedarr[y+c][x]
+			end
+			maxproduct =  product > maxproduct ? product : maxproduct
+		end
+		#vertical
+		if x+3 <= 19
+			product = 1
+			(0..3).each do |c|
+				product*= splicedarr[y][x+c]
+			end
+			maxproduct =  product > maxproduct ? product : maxproduct
+		end
+		#diagonal left
+		if x+3 <= 19 && y+3 <= 19
+			product = 1
+			(0..3).each do |c|
+				product*= splicedarr[y+c][x+c]
+			end
+			maxproduct =  product > maxproduct ? product : maxproduct
+		end
+		#diagonal right
+		if x-3 <= 19 && y+3 <= 19
+			product = 1
+			(0..3).each do |c|
+				product*= splicedarr[y+c][x-c]
+			end
+			maxproduct =  product > maxproduct ? product : maxproduct
+		end
+	end
+end
 
+puts maxproduct
 =begin 
 
 realized this is not going to hep me check all diagonals
